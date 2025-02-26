@@ -1,0 +1,42 @@
+<mvc:View controllerName="project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="BSEG_TABSet">
+                <smartFilterBar:controlConfiguration>
+                    <smartFilterBar:ControlConfiguration key="Bukrs" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false">
+                    </smartFilterBar:ControlConfiguration>
+                    <smartFilterBar:ControlConfiguration key="Belnr" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false">
+                    </smartFilterBar:ControlConfiguration>
+                    <smartFilterBar:ControlConfiguration key="Gjahr" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false">
+                    </smartFilterBar:ControlConfiguration>
+                    <smartFilterBar:ControlConfiguration key="Augdt" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false">
+                    </smartFilterBar:ControlConfiguration>
+                    <smartFilterBar:ControlConfiguration key="Buzei" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false">
+                    </smartFilterBar:ControlConfiguration>
+                    <smartFilterBar:ControlConfiguration key="Augbl" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false">
+                    </smartFilterBar:ControlConfiguration>
+                </smartFilterBar:controlConfiguration>
+            </smartFilterBar:SmartFilterBar>
+            <smartTable:SmartTable id="smartTable" 
+             initiallyVisibleFields="Bukrs,Belnr,Gjahr,Buzei,Augdt,Augbl"
+             initialNoDataText="Bấm vô filter"
+             entitySet="BSEG_TABSet"
+             tableType="Table"
+             enableExport="true"
+             header="BSEG Table"
+             useVariantManagement="true"
+             useTablePersonalisation="true"
+             showRowCount="true"
+             persistencyKey="SmartTableAnalytical_Explored" 
+             enableAutoColumnWidth="true"
+             enableAutoBinding="true"
+             smartFilterId="smartFilterBar"
+             class="sapUiResponsiveContentPadding"
+             />
+        </content>
+    </Page>
+</mvc:View>
