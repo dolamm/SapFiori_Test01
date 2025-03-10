@@ -1,0 +1,31 @@
+<mvc:View
+    controllerName="project1.controller.Input"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar">
+    <form:SimpleForm editable="true">
+        <Label text="Company Code" labelFor="multiInput" />
+        <MultiInput id="multiInput" valueHelpRequest="onValueHelpRequest" showValueHelp="true"
+        suggestionRows="{
+            path: '/BSEG_TABSet',
+            length: 5
+        }">
+        <suggestionColumns>
+            <Column >
+                <Label text="Company Code"/>
+            </Column>
+            <Column >
+                <Label text="Document Number"/>
+            </Column>
+        </suggestionColumns>
+        <suggestionRows>
+            <ColumnListItem>
+                    <Text text="{Bukrs}"/>
+                    <Text text="{Belnr}"/>
+            </ColumnListItem>
+        </suggestionRows>
+        </MultiInput>
+    </form:SimpleForm>
+</mvc:View>

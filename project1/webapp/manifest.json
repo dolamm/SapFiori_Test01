@@ -52,6 +52,18 @@
                 "sap.ui.core": {}
             }
         },
+        "config": {
+			"sample": {
+				"stretch": true,
+				"files": [
+					"Detail.view.xml",
+					"Detail.controller.js",
+                    "Input.view.xml",
+                    "Input.controller.js",
+					"manifest.json"
+				]
+			}
+		},
         "contentDensities": {
             "compact": true,
             "cozy": true
@@ -95,12 +107,34 @@
                     "target": [
                         "TargetView1"
                     ]
+                },
+                {
+                    "name": "Detail",
+                    "pattern": "Detail/{objectId}",
+                    "target": [
+                        "Detail"
+                    ]
+                },
+                {
+                    "name": "Input",
+                    "pattern": "Input",
+                    "target": [
+                        "Input"
+                    ]
                 }
             ],
             "targets": {
                 "TargetView1": {
                     "id": "View1",
                     "name": "View1"
+                },
+                "Detail": {
+                    "id": "Detail",
+                    "name": "Detail"
+                },
+                "Input": {
+                    "id": "Input",
+                    "name": "Input"
                 }
             }
         },

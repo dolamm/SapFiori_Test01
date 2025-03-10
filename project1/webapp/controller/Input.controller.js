@@ -7,25 +7,16 @@ sap.ui.define([
     "sap/m/Text",
     "sap/ui/table/Table",
     "sap/ui/table/Column"
-], (Controller, ValueHelpDialog, JSONModel, ColumnListItem, Label, Text, Table, Column) => {
+], function (Controller, ValueHelpDialog, JSONModel, ColumnListItem, Label, Text, Table, Column) {
     "use strict";
 
-    return Controller.extend("project1.controller.View1", {
-        onInit() {
+    return Controller.extend("project1.controller.Input", {
+        onInit: function () {
+            const oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+            oRouter.getRoute("Input").attachPatternMatched(this._onObjectMatched, this);
         },
-        onPress(oEvent) {
-            // Lấy dữ liệu của dòng được nhấn
-            const oItem = oEvent.getParameter("listItem") || oEvent.getSource();
-            const oContext = oItem.getBindingContext();
-            const sBukrs = oContext.getProperty("Bukrs");
-            const sGjahr = oContext.getProperty("Gjahr");
-            const sBelnr = oContext.getProperty("Belnr");
 
-            // Chuyển sang trang detail
-            var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.navTo("Detail", {objectId: sBukrs + "-" + sGjahr + "-" + sBelnr });
-        },
-        onValueHelpRequestFilter: function (oEvent) {
+        onValueHelpRequest: function (oEvent) {
             var oView = this.getView();
             var oInput = oEvent.getSource();
 
