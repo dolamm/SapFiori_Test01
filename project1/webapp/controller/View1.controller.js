@@ -6,8 +6,10 @@ sap.ui.define([
     "sap/m/Label",
     "sap/m/Text",
     "sap/ui/table/Table",
-    "sap/ui/table/Column"
-], (Controller, ValueHelpDialog, JSONModel, ColumnListItem, Label, Text, Table, Column) => {
+    "sap/ui/table/Column",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
+], (Controller, ValueHelpDialog, JSONModel, Label, Text, Table, Column, Filter, FilterOperator) => {
     "use strict";
 
     return Controller.extend("project1.controller.View1", {
@@ -52,8 +54,8 @@ sap.ui.define([
 
                         aTokens.forEach(token => {
                             var sKey = token.getKey(); 
-                            token.setKey("=" + sKey);  
-                            token.setText("=" + sKey); 
+                            token.setKey(sKey);
+                            token.setText(sKey);
                         });
 
                         oInput.setTokens(aTokens);
@@ -77,7 +79,15 @@ sap.ui.define([
                         new Column({
                             label: new Label({ text: "Document Number" }),
                             template: new Text({ text: "{Belnr}" })
-                        })
+                        }),
+                        new Column({
+                            label: new Label({ text: "Fiscal Year" }),
+                            template: new Text({ text: "{Gjahr}" })
+                        }),
+                        new Column({
+                            label: new Label({ text: "Item" }),
+                            template: new Text({ text: "{Buzid}" })
+                        }),
                     ]
                 });
 
@@ -88,6 +98,23 @@ sap.ui.define([
             this._oValueHelpDialog.getTable().bindRows("/");
             // Open the ValueHelpDialog
             this._oValueHelpDialog.open();
+        },
+        onBeforeRebindTable: function(oEvent) {
+            var oBindingParams = oEvent.getParameter("bindingParams");
+            var oDocNoFilter = this.byId("Doc.NoFilter");
+            
+            if (oDocNoFilter) {
+                var aDocNoTokens = oDocNoFilter.getTokens();
+                
+                if (aDocNoTokens && aDocNoTokens.length > 0) {
+                    aDocNoTokens.forEach(function(oToken) {
+                        var sValue = oToken.getKey();
+                        oBindingParams.filters.push(new Filter("Belnr", FilterOperator.EQ, sValue));
+                    });
+                }
+            }
+            
+            console.log("Filters:", oBindingParams.filters);
         }
     });
 });
