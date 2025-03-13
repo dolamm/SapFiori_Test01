@@ -2,7 +2,6 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/comp/valuehelpdialog/ValueHelpDialog",
     "sap/ui/model/json/JSONModel",
-    "sap/m/ColumnListItem",
     "sap/m/Label",
     "sap/m/Text",
     "sap/ui/table/Table",
