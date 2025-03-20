@@ -161,8 +161,10 @@ sap.ui.define([
         _filterValueHelpDialogTable: function (sQuery) {
             var oTable = this._oValueHelpDialog.getTable();
             var oBinding = oTable.getBinding("rows");
+            var oDocNoFilter = this.byId("Doc.NoFilter");
+            var oCompanyCodeFilter = this.byId("CompanyCodeFilter");
         
-            if (oBinding) {
+            if (oBinding && oDocNoFilter) {
                 if (sQuery && sQuery.trim() !== "") {
                     var aFilters = [];
                     aFilters.push(new Filter({
@@ -173,6 +175,19 @@ sap.ui.define([
                     }));
                     oBinding.filter(aFilters);
                 } 
+            }
+            
+            if (oBinding && oCompanyCodeFilter) {
+                if (sQuery && sQuery.trim() !== "") {
+                    var aFilters = [];
+                    aFilters.push(new Filter({
+                        filters: [
+                            new Filter("Bukrs", FilterOperator.StartsWith, sQuery)
+                        ],
+                        and: false
+                    }));
+                    oBinding.filter(aFilters);
+                }
             }
         },
         
