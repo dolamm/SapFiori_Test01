@@ -90,6 +90,15 @@ sap.ui.define([
                     selectedKey: "EQ"
                 });
         
+                this._oSearchField = new sap.m.SearchField({
+                    width: "100%",
+                    placeholder: "Search...",
+                    search: function (oEvent) {
+                        var sQuery = oEvent.getParameter("query");
+                        that._filterValueHelpDialogTable(sQuery);
+                    }
+                });
+        
                 var oFilterBar = new FilterBar({
                     advancedMode: true,
                     filterBarExpanded: true,
@@ -99,10 +108,16 @@ sap.ui.define([
                             name: "operator",
                             label: "Operator",
                             control: this._oOperatorComboBox
+                        }),
+                        new FilterGroupItem({
+                            groupName: "default",
+                            name: "search",
+                            label: "Search",
+                            control: this._oSearchField
                         })
                     ]
                 });
-                
+        
                 this._oValueHelpDialog.setFilterBar(oFilterBar);
         
                 // Create a table for the ValueHelpDialog
@@ -139,9 +154,34 @@ sap.ui.define([
             //Set data for search help
             this._oValueHelpDialog.getTable().setModel(this._oSearchModel);
             this._oValueHelpDialog.getTable().bindRows("/");
-            
+        
             // Open the ValueHelpDialog
             this._oValueHelpDialog.open();
+        },
+        _filterValueHelpDialogTable: function (sQuery) {
+            var oTable = this._oValueHelpDialog.getTable();
+            var oBinding = oTable.getBinding("rows");
+            var sInputId = this._currentInputId;
+            var that = this;
+        
+            if (oBinding) {
+                if (sQuery && sQuery.trim() !== "") {
+                    var aFilters = [];
+                    aFilters.push(new sap.ui.model.Filter({
+                        filters: [
+                            new sap.ui.model.Filter("Belnr", sap.ui.model.FilterOperator.Contains, sQuery)
+                        ],
+                        and: false
+                    }));
+                    oBinding.filter(aFilters);
+                } else {
+                    if (this._oUseValueButton) {
+                        this._oUseValueButton.setVisible(false);
+                    }
+                    
+                    oBinding.filter([]);
+                }
+            }
         },
         
         onBeforeRebindTable: function(oEvent) {

@@ -7,26 +7,12 @@
                 <Key>
                     <PropertyRef Name="Belnr"/>
                 </Key>
-                <Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company Code" sap:value-list="standard" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true">
-                    <Annotation Term="Common.ValueList">
-                        <Record>
-                            <PropertyValue Property="Label" String="Company Code"/>
-                            <PropertyValue Property="CollectionPath" String="BSEG_TABSet"/>
-                            <PropertyValue Bool="true" Property="SearchSupported"/>
-                            <PropertyValue Property="Parameters">
-                                <Collection>
-                                    <Record Type="Common.ValueListParameterOut">
-                                        <PropertyValue Property="LocalDataProperty" PropertyPath="Bukrs"/>
-                                        <PropertyValue Property="ValueListProperty" String="CompanyCode"/>
-                                    </Record>
-                                </Collection>
-                            </PropertyValue>
-                        </Record>
-                    </Annotation>
+                <Property Name="Bukrs" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Company Code" sap:value-list="standard" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="Belnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document Number" sap:value-list="standard" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true">
                 </Property>
-                <Property Name="Belnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Document Number" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
                 <Property Name="Gjahr" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Fiscal Year" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
-                <Property Name="Buzei" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Item" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
+                <Property Name="Buzei" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Item" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true">
+                </Property>
                 <Property Name="Buzid" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Line Item ID" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
                 <Property Name="Augdt" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Clearing" sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
                 <Property Name="Augbl" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Clrng doc." sap:creatable="true" sap:updatable="true" sap:sortable="true" sap:filterable="true"/>
