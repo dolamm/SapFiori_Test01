@@ -161,26 +161,18 @@ sap.ui.define([
         _filterValueHelpDialogTable: function (sQuery) {
             var oTable = this._oValueHelpDialog.getTable();
             var oBinding = oTable.getBinding("rows");
-            var sInputId = this._currentInputId;
-            var that = this;
         
             if (oBinding) {
                 if (sQuery && sQuery.trim() !== "") {
                     var aFilters = [];
-                    aFilters.push(new sap.ui.model.Filter({
+                    aFilters.push(new Filter({
                         filters: [
-                            new sap.ui.model.Filter("Belnr", sap.ui.model.FilterOperator.Contains, sQuery)
+                            new Filter("Belnr", FilterOperator.StartsWith, sQuery)
                         ],
                         and: false
                     }));
                     oBinding.filter(aFilters);
-                } else {
-                    if (this._oUseValueButton) {
-                        this._oUseValueButton.setVisible(false);
-                    }
-                    
-                    oBinding.filter([]);
-                }
+                } 
             }
         },
         
