@@ -2,6 +2,7 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:core="sap.ui.core"
     xmlns="sap.m">
     <Page id="page" title="{i18n>title}">
         <content>
@@ -21,8 +22,15 @@
                     </smartFilterBar:ControlConfiguration>
                     <smartFilterBar:ControlConfiguration key="Gjahr" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"/>
                     <smartFilterBar:ControlConfiguration key="Augdt" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"/>
-                    <smartFilterBar:ControlConfiguration key="Buzei" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"/>
-                    <smartFilterBar:ControlConfiguration key="Augbl" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false"/>
+                    <smartFilterBar:ControlConfiguration key="Buzei" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false" controlType="dropDownList">
+                        <smartFilterBar:customControl>
+                            <Select id="augblDropdown" change="onSetDataForDropDown" items="{/BSEG_TABSet}" forceSelection="false">
+                                <core:Item key="{Buzei}" text="{Buzei}" />
+                            </Select>
+                        </smartFilterBar:customControl>
+                    </smartFilterBar:ControlConfiguration>
+                    <smartFilterBar:ControlConfiguration key="Augbl" visibleInAdvancedArea="true" preventInitialDataFetchInValueHelpDialog="false">
+                    </smartFilterBar:ControlConfiguration>
                 </smartFilterBar:controlConfiguration>
             </smartFilterBar:SmartFilterBar>
             <smartTable:SmartTable id="smartTable" 
